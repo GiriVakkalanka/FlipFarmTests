@@ -14,6 +14,7 @@ module.exports = app => {
     res.send('Thanks for voting!');
   });
 
+  /*
   app.post('/api/surveys/webhooks', (req, res) => {
     const events = _.map(req.body, ({ email, url }) => {
       const pathname = new URL(url).pathname;
@@ -28,6 +29,7 @@ module.exports = app => {
     const uniqueEvents = _.uniqBy(compactEvents, 'email', 'surveyId');
     res.send({});
   });
+  */
 
   app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
     //pull those properties off the request body.
