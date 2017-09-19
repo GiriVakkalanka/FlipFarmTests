@@ -8,6 +8,7 @@ require('./models/Users');
 require('./models/Survey');
 require('./services/passport');
 
+//FlipFarm
 mongoose.connect(keys.mongoURI);
 
 const app = express();
