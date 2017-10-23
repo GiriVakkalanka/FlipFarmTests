@@ -18,3 +18,10 @@ export const submitSurvey = (values, history) => async dispatch => {
   history.push('/surveys');
   dispatch({ type: FETCH_USER, payload: res.data });
 };
+
+export const submitItem = (values, history) => async dispatch => {
+  const res = await axios.post('/api/items', values);
+  console.log(res);
+  history.push('/');
+  dispatch({ type: FETCH_USER, payload: res.data });
+};

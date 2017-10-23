@@ -11,4 +11,4 @@ const itemSchema = new Schema({
   offers: [OfferSchema]
 });
 
-mongoose.model('item', itemSchema);
+mongoose.model('Item', itemSchema);

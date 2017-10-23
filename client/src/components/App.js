@@ -5,7 +5,8 @@ import * as actions from '../actions';
 import Landing from './Landing';
 import Header from './Header';
 import Dashboard from './Dashboard';
-import SurveyNew from './surveys/SurveyNew';
+//import SurveyNew from './surveys/SurveyNew';
+import ItemNew from './items/ItemNew';
 
 class App extends Component {
   componentDidMount() {
@@ -19,7 +20,7 @@ class App extends Component {
             <Header />
             <Route exact path="/" component={Landing} />
             <Route exact path="/surveys" component={Dashboard} />
-            <Route path="/surveys/new" component={SurveyNew} />
+            <Route path="/surveys/new" component={ItemNew} />
           </div>
         </BrowserRouter>
       </div>
