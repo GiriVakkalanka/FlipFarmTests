@@ -25,6 +25,13 @@ class ItemForm extends Component {
       <div>
         <form onSubmit={this.props.handleSubmit(this.props.onItemSubmit)}>
           {this.renderFields()}
+          <Field
+            key="pic"
+            component="input"
+            type="file"
+            label="Upload Picture"
+            name="pic"
+          />
           <Link to="/surveys" className="red btn-flat white-text">
             Cancel
           </Link>
