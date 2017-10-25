@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router-dom';
 import ItemField from './ItemField';
+//import FileField from './FileField';
 import formFields from './formFields';
+import DropZone from './DropZone';
 
 class ItemForm extends Component {
   renderFields() {
@@ -25,14 +27,7 @@ class ItemForm extends Component {
       <div>
         <form onSubmit={this.props.handleSubmit(this.props.onItemSubmit)}>
           {this.renderFields()}
-          <Field
-            key="pic"
-            component="input"
-            type="file"
-            label="Upload Picture"
-            name="pic"
-          />
-          <Link to="/surveys" className="red btn-flat white-text">
+          <Link to="/items" className="red btn-flat white-text">
             Cancel
           </Link>
           <button type="submit" className="teal btn-flat right white-text">
@@ -40,6 +35,7 @@ class ItemForm extends Component {
             <i className="material-icons right">done</i>
           </button>
         </form>
+        <DropZone />
       </div>
     );
   }

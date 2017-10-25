@@ -25,3 +25,9 @@ export const submitItem = (values, history) => async dispatch => {
   history.push('/');
   dispatch({ type: FETCH_USER, payload: res.data });
 };
+
+export const submitPicture = (values, config) => async dispatch => {
+  const res = await axios.post('/api/photo', values, config);
+  console.log(res);
+  dispatch({ type: FETCH_USER, payload: res.data });
+};

@@ -6,6 +6,10 @@ import ItemFormReview from './ItemFormReview';
 class ItemNew extends Component {
   state = { showItemReview: false };
 
+  onItemSubmitTest() {
+    this.setState({ showItemReview: true });
+  }
+
   renderContent() {
     if (this.state.showItemReview) {
       return (
@@ -16,7 +20,12 @@ class ItemNew extends Component {
     }
 
     return (
-      <ItemForm onItemSubmit={() => this.setState({ showItemReview: true })} />
+      <ItemForm
+        onItemSubmit={() => {
+          this.setState({ showItemReview: true });
+          //console.log('test');
+        }}
+      />
     );
   }
 

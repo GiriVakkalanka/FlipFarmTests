@@ -25,4 +25,9 @@ module.exports = app => {
 
     console.log(item);
   });
+
+  app.post('/api/photo', async (req, res) => {
+    const { photo } = req.body;
+    console.log(photo);
+  });
 };
