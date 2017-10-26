@@ -20,14 +20,15 @@ export const submitSurvey = (values, history) => async dispatch => {
 };
 
 export const submitItem = (values, history) => async dispatch => {
+  //console.log(values);
   const res = await axios.post('/api/items', values);
-  console.log(res);
+  //console.log(res);
   history.push('/');
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const submitPicture = (values, config) => async dispatch => {
-  const res = await axios.post('/api/photo', values, config);
+export const submitPicture = (formData, config) => async dispatch => {
+  const res = await axios.post('/api/photo', formData, config);
   console.log(res);
   dispatch({ type: FETCH_USER, payload: res.data });
 };

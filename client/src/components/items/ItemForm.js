@@ -5,7 +5,10 @@ import { Link } from 'react-router-dom';
 import ItemField from './ItemField';
 //import FileField from './FileField';
 import formFields from './formFields';
-import DropZone from './DropZone';
+//import DropZone from './DropZone';
+import FilePicker from './FilePicker';
+//import { Image } from 'react-bootstrap';
+//import Img from 'react-image';
 
 class ItemForm extends Component {
   renderFields() {
@@ -35,7 +38,7 @@ class ItemForm extends Component {
             <i className="material-icons right">done</i>
           </button>
         </form>
-        <DropZone />
+        <FilePicker />
       </div>
     );
   }

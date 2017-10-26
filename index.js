@@ -7,6 +7,7 @@ const keys = require('./config/keys');
 require('./models/Users');
 require('./models/Survey');
 require('./models/Item');
+require('./models/Photo');
 require('./services/passport');
 
 //FlipFarm

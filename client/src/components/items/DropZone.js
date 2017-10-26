@@ -55,5 +55,5 @@ class DropZone extends Component {
 }
 
 export default reduxForm({
-  form: 'itemForm'
+  form: 'fileForm'
 })(DropZone);

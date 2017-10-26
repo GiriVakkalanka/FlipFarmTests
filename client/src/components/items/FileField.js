@@ -22,5 +22,5 @@ const FileUpload = props => {
 };
 
 export default reduxForm({
-  form: 'photoForm'
+  form: 'fileForm'
 })(FileUpload);

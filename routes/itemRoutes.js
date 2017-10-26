@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const Item = mongoose.model('Item');
+const Photo = mongoose.model('Photo');
 const requireLogin = require('../middlewares/requireLogin');
+const jimpMiddleware = require('../middlewares/jimpMiddleware');
+const multerMiddleware = require('../middlewares/multerMiddleware');
 
 module.exports = app => {
   app.post('/api/items', requireLogin, async (req, res) => {
@@ -26,8 +29,21 @@ module.exports = app => {
     console.log(item);
   });
 
-  app.post('/api/photo', async (req, res) => {
-    const { photo } = req.body;
-    console.log(photo);
+  app.post('/api/photo', multerMiddleware, jimpMiddleware, async (req, res) => {
+    const photo = new Photo({
+      photo: req.body.photo
+    });
+
+    try {
+      await photo.save();
+      //const user = await req.user.save();
+
+      res.send(req.body.photo);
+      //console.log(item);
+    } catch (err) {
+      res.status(400).send(err);
+    }
+    //const formData = req.file
+    //const user = await req.user.save();
   });
 };

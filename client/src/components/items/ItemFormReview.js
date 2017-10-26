@@ -37,6 +37,7 @@ const ItemFormReview = ({ onCancel, formValues, submitItem, history }) => {
 };
 
 function mapStateToProps(state) {
+  //console.log(state.form);
   return { formValues: state.form.itemForm.values };
 }
 
