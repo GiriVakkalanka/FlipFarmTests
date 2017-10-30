@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER } from './types';
+import { FETCH_USER, FETCH_PIC } from './types';
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get('/api/current_user');
@@ -30,5 +30,5 @@ export const submitItem = (values, history) => async dispatch => {
 export const submitPicture = (formData, config) => async dispatch => {
   const res = await axios.post('/api/photo', formData, config);
   console.log(res);
-  dispatch({ type: FETCH_USER, payload: res.data });
+  dispatch({ type: FETCH_PIC, payload: res.data });
 };

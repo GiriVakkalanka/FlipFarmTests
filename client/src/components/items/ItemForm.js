@@ -9,6 +9,7 @@ import formFields from './formFields';
 import FilePicker from './FilePicker';
 //import { Image } from 'react-bootstrap';
 //import Img from 'react-image';
+//import CloudinaryPicker from './CloudinaryPicker';
 
 class ItemForm extends Component {
   renderFields() {

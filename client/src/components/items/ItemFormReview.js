@@ -5,7 +5,7 @@ import formFields from './formFields';
 import { withRouter } from 'react-router-dom';
 import * as actions from '../../actions';
 
-const ItemFormReview = ({ onCancel, formValues, submitItem, history }) => {
+const ItemFormReview = ({ onCancel, formValues, pic, submitItem, history }) => {
   const reviewFields = _.map(formFields, ({ name, label }) => {
     return (
       <div key={name}>
@@ -19,6 +19,7 @@ const ItemFormReview = ({ onCancel, formValues, submitItem, history }) => {
     <div>
       <h5> Please confirm your entries </h5>
       {reviewFields}
+      <img src={pic} alt="uploadPic" />
       <button
         className="yellow darken-3 white-text btn-flat"
         onClick={onCancel}
@@ -38,7 +39,7 @@ const ItemFormReview = ({ onCancel, formValues, submitItem, history }) => {
 
 function mapStateToProps(state) {
   //console.log(state.form);
-  return { formValues: state.form.itemForm.values };
+  return { formValues: state.form.itemForm.values, pic: state.pic };
 }
 
 export default connect(mapStateToProps, actions)(withRouter(ItemFormReview));
