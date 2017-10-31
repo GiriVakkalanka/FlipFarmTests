@@ -8,6 +8,7 @@ import formFields from './formFields';
 //import DropZone from './DropZone';
 import FilePicker from './FilePicker';
 //import { Image } from 'react-bootstrap';
+//import { Image } from 'react-bootstrap';
 //import Img from 'react-image';
 //import CloudinaryPicker from './CloudinaryPicker';
 

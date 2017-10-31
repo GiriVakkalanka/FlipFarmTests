@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import formFields from './formFields';
 import { withRouter } from 'react-router-dom';
+import { Image } from 'react-bootstrap';
 import * as actions from '../../actions';
 
 const ItemFormReview = ({ onCancel, formValues, pic, submitItem, history }) => {
@@ -15,11 +16,18 @@ const ItemFormReview = ({ onCancel, formValues, pic, submitItem, history }) => {
     );
   });
 
+  const formValuesWithURL = {
+    name: formValues.name,
+    description: formValues.description,
+    url: pic
+  };
+
   return (
     <div>
       <h5> Please confirm your entries </h5>
+      <Image src={pic} rounded />
       {reviewFields}
-      <img src={pic} alt="uploadPic" />
+
       <button
         className="yellow darken-3 white-text btn-flat"
         onClick={onCancel}
@@ -27,7 +35,7 @@ const ItemFormReview = ({ onCancel, formValues, pic, submitItem, history }) => {
         Back
       </button>
       <button
-        onClick={() => submitItem(formValues, history)}
+        onClick={() => submitItem(formValuesWithURL, history)}
         className="green btn-flat right white-text"
       >
         Send Survey
