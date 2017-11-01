@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Item = mongoose.model('Item');
 const Photo = mongoose.model('Photo');
+const Offer = mongoose.model('Offer');
 const requireLogin = require('../middlewares/requireLogin');
 const jimpMiddleware = require('../middlewares/jimpMiddleware');
 const multerMiddleware = require('../middlewares/multerMiddleware');
@@ -51,13 +52,69 @@ module.exports = app => {
       .end(req.file.buffer);
   });
 
-  app.get('/api/getItems', requireLogin, async (req, res) => {
+  app.get('/api/get_items', requireLogin, async (req, res) => {
     const items = await Item.find({ _user: req.user.id });
     //.select('-c -d')
     //
     //.select({recipients:false})
     //to exclude a category in an item
-
+    //console.log(items);
     res.send(items);
+  });
+
+  app.get('/api/user_received_offers', requireLogin, async (req, res) => {
+    const offers = await Offer.find({ _offerTo: req.user.id });
+    res.send(offers);
+  });
+
+  app.get('/api/user_sent_offers', requireLogin, async (req, res) => {
+    const offers = await Offer.find({ _offerFrom: req.user.id });
+    res.send(offers);
+  });
+
+  app.get('/api/offer_by_item', requireLogin, async (req, res) => {
+    const { itemID } = req.body;
+    const offers = await Offer.find({ _itemWanted: itemID });
+    res.send(offers);
+  });
+
+  app.post('/api/make_offer', requireLogin, async (req, res) => {
+    const { offer } = req.body;
+    const offerRecord = new Offer({
+      _offerTo: offer._offerTo,
+      _offerFrom: req.user.id,
+      _itemOffered: offer._itemOffered,
+      _itemWanted: offer._itemWanted,
+      dateCreated: Date.now()
+    });
+
+    await offerRecord.save();
+    const itemWanted = await Item.find({ _itemWanted: offer._itemWanted });
+    itemWanted.offers.push(offerRecord);
+    const updatedItem = await itemWanted.save();
+    res.send(offer);
+  });
+
+  app.post('api/accept_offer', requireLogin, async (req, res) => {
+    const { acceptance } = req.body;
+
+    const offer = await Offer.find({ _id: acceptance.offer.id }); //check this
+    offer.accepted = false;
+    offer.dateAccepted = Date.now();
+    await offer.save();
+
+    const itemAccepted = await Item.find({ _id: acceptance.offer.itemWanted });
+    itemAccepted.traded = true;
+    itemAccepted.tradedTo = acceptance.offer.offerFrom;
+    itemAccepted.tradedFor = acceptance.offer.itemOffered;
+    itemAccepted.save();
+
+    const itemOffered = await Item.find({ _id: acceptance.offer.itemOffered });
+    itemOffered.traded = true;
+    itemOffered.tradedTo = acceptance.offer.offerTo;
+    itemOffered.tradedFor = acceptance.offer.itemWanted;
+    itemOffered.save();
+
+    res.send(offer);
   });
 };
