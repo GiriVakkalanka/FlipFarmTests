@@ -7,6 +7,7 @@ import Header from './Header';
 import Dashboard from './Dashboard';
 //import SurveyNew from './surveys/SurveyNew';
 import ItemNew from './items/ItemNew';
+import ItemPage from './items/ItemPage';
 
 class App extends Component {
   componentDidMount() {
@@ -21,6 +22,7 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/items" component={Dashboard} />
             <Route path="/items/new" component={ItemNew} />
+            <Route path="/offer/:itemID" component={ItemPage} />
           </div>
         </BrowserRouter>
       </div>
@@ -29,3 +31,4 @@ class App extends Component {
 }
 
 export default connect(null, actions)(App);
+//<Route exact path="/items/:itemID" component={ItemPage} />

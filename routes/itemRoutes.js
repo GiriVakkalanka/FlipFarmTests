@@ -52,7 +52,13 @@ module.exports = app => {
       .end(req.file.buffer);
   });
 
-  app.get('/api/get_items', requireLogin, async (req, res) => {
+  app.get('/api/get_all_items', async (req, res) => {
+    const items = await Item.find({});
+    //console.log(items);
+    res.send(items);
+  });
+
+  app.get('/api/get_user_items', requireLogin, async (req, res) => {
     const items = await Item.find({ _user: req.user.id });
     //.select('-c -d')
     //
