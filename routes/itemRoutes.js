@@ -59,11 +59,13 @@ module.exports = app => {
   });
 
   app.get('/api/get_user_items', requireLogin, async (req, res) => {
+    //console.log(req);
     const items = await Item.find({ _user: req.user.id });
     //.select('-c -d')
     //
     //.select({recipients:false})
     //to exclude a category in an item
+    //console.log(items);
     //console.log(items);
     res.send(items);
   });
@@ -85,20 +87,21 @@ module.exports = app => {
   });
 
   app.post('/api/make_offer', requireLogin, async (req, res) => {
-    const { offer } = req.body;
+    const { _offerTo, _offerFrom, _itemOffered, _itemWanted } = req.body;
+
     const offerRecord = new Offer({
-      _offerTo: offer._offerTo,
+      _offerTo: _offerTo,
       _offerFrom: req.user.id,
-      _itemOffered: offer._itemOffered,
-      _itemWanted: offer._itemWanted,
+      _itemOffered: _itemOffered,
+      _itemWanted: _itemWanted,
       dateCreated: Date.now()
     });
 
     await offerRecord.save();
-    const itemWanted = await Item.find({ _itemWanted: offer._itemWanted });
+    const itemWanted = await Item.findOne({ _id: _itemWanted });
     itemWanted.offers.push(offerRecord);
     const updatedItem = await itemWanted.save();
-    res.send(offer);
+    res.send(updatedItem);
   });
 
   app.post('api/accept_offer', requireLogin, async (req, res) => {

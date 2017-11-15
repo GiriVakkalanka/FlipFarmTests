@@ -1,26 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Grid } from 'react-bootstrap';
+import { Grid, Col } from 'react-bootstrap';
 import ItemCard from './ItemCard';
 import * as actions from '../../actions';
 
 class ItemGallery extends Component {
   componentDidMount() {
     this.props.fetchAllItems();
+    //this.props.fetchUserItems();
   }
 
   renderItems() {
     return this.props.items.map(item => {
       return (
-        <div key={item._id}>
+        <Col xs={12} key={item._id}>
           <ItemCard
             _id={item._id}
             src={item.picture}
             name={item.name}
             description={item.description}
             handleOffer={() => this.props.loadItem(item._id)}
+            buttonLabel="Make Offer"
           />
-        </div>
+        </Col>
       );
     });
   }
@@ -33,8 +35,8 @@ class ItemGallery extends Component {
   }
 }
 
-function mapStateToProps({ items }) {
-  return { items };
+function mapStateToProps({ items, userItems }) {
+  return { items, userItems };
 }
 
 export default connect(mapStateToProps, actions)(ItemGallery);

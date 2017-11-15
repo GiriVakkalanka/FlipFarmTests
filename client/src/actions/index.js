@@ -1,5 +1,12 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_PIC, FETCH_ITEMS, LOAD_ITEM } from './types';
+import {
+  FETCH_USER,
+  FETCH_PIC,
+  FETCH_ITEMS,
+  LOAD_ITEM,
+  FETCH_USER_ITEMS,
+  MAKE_OFFER
+} from './types';
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get('/api/current_user');
@@ -40,8 +47,24 @@ export const fetchAllItems = () => async dispatch => {
   dispatch({ type: FETCH_ITEMS, payload: res.data });
 };
 
+export const fetchUserItems = () => async dispatch => {
+  //console.log('action creator called');
+  const res = await axios.get('/api/get_user_items');
+  //console.log(res);
+
+  dispatch({ type: FETCH_USER_ITEMS, payload: res.data });
+};
+
 export const loadItem = itemID => {
   //console.log('loaditem action ran');
   //console.log(itemID);
   return { type: LOAD_ITEM, payload: itemID };
+};
+
+export const makeOffer = offer => async dispatch => {
+  console.log('action creator called');
+  console.log(offer);
+  const res = await axios.post('/api/make_offer', offer);
+  //console.log(res);
+  dispatch({ type: MAKE_OFFER, payload: res.data });
 };

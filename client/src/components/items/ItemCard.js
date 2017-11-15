@@ -7,6 +7,7 @@ import * as actions from '../../actions';
 class ItemCard extends Component {
   render() {
     //console.log(this.props);
+    const buttonLabel = this.props.buttonLabel;
     return (
       <Row>
         <Col xs={12}>
@@ -22,7 +23,7 @@ class ItemCard extends Component {
                   }}
                   bsStyle="primary"
                 >
-                  Make Offer
+                  {`${buttonLabel}`}
                 </Button>
               </Link>
             </p>
