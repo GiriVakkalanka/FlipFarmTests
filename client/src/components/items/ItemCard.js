@@ -6,7 +6,6 @@ import * as actions from '../../actions';
 
 class ItemCard extends Component {
   render() {
-    //config check
     //console.log(this.props);
     const buttonLabel = this.props.buttonLabel;
     return (
