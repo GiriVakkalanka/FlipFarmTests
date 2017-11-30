@@ -7,10 +7,12 @@ import * as actions from '../../actions';
 class ItemGallery extends Component {
   componentDidMount() {
     this.props.fetchAllItems();
+    //console.log(this.props.items);
     //this.props.fetchUserItems();
   }
 
   renderItems() {
+    //console.log(this.props.items);
     return this.props.items.map(item => {
       return (
         <Col xs={12} key={item._id}>

@@ -43,7 +43,7 @@ export const submitPicture = (formData, config) => async dispatch => {
 
 export const fetchAllItems = () => async dispatch => {
   const res = await axios.get('/api/get_all_items');
-
+  //console.log(res.data);
   dispatch({ type: FETCH_ITEMS, payload: res.data });
 };
 

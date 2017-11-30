@@ -8,6 +8,7 @@ import Dashboard from './Dashboard';
 //import SurveyNew from './surveys/SurveyNew';
 import ItemNew from './items/ItemNew';
 import ItemPage from './items/ItemPage';
+import UserPage from './user/UserPage';
 
 class App extends Component {
   componentDidMount() {
@@ -23,6 +24,7 @@ class App extends Component {
             <Route exact path="/items" component={Dashboard} />
             <Route path="/items/new" component={ItemNew} />
             <Route path="/offer/:itemID" component={ItemPage} />
+            <Route path="/user" component={UserPage} />
           </div>
         </BrowserRouter>
       </div>
