@@ -2,15 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import UserItemInventory from './UserItemInventory';
+import ReceivedOfferList from './ReceivedOfferList';
 
 class UserPage extends Component {
   componentDidMount() {
     this.props.fetchUserItems();
+    this.props.fetchReceivedOffers();
   }
 
   render() {
     //console.log(this.props.userItems);
-    return <UserItemInventory />;
+    return (
+      <div>
+        <UserItemInventory />
+        <ReceivedOfferList />;
+      </div>
+    );
   }
 }
 

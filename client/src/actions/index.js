@@ -5,7 +5,8 @@ import {
   FETCH_ITEMS,
   LOAD_ITEM,
   FETCH_USER_ITEMS,
-  MAKE_OFFER
+  MAKE_OFFER,
+  FETCH_RECEIVED_OFFERS
 } from './types';
 
 export const fetchUser = () => async dispatch => {
@@ -59,6 +60,11 @@ export const loadItem = itemID => {
   //console.log('loaditem action ran');
   //console.log(itemID);
   return { type: LOAD_ITEM, payload: itemID };
+};
+
+export const fetchReceivedOffers = () => async dispatch => {
+  const res = await axios.get('/api/user_received_offers');
+  dispatch({ type: FETCH_RECEIVED_OFFERS, payload: res.data });
 };
 
 export const makeOffer = offer => async dispatch => {

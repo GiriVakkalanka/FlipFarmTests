@@ -72,7 +72,19 @@ module.exports = app => {
 
   app.get('/api/user_received_offers', requireLogin, async (req, res) => {
     const offers = await Offer.find({ _offerTo: req.user.id });
-    res.send(offers);
+    //console.log(offers);
+    let offerList = [];
+    for (let off in offers) {
+      //console.log(offers[off]._id);
+      const itemOffered = await Item.findOne({ _id: offers[off]._itemOffered });
+      const itemWanted = await Item.findOne({ _id: offers[off]._itemWanted });
+
+      const tradeOffer = { itemOffered, itemWanted };
+      offerList.push(tradeOffer);
+    }
+    console.log(offerList);
+
+    res.send(offerList);
   });
 
   app.get('/api/user_sent_offers', requireLogin, async (req, res) => {
