@@ -6,7 +6,8 @@ import {
   LOAD_ITEM,
   FETCH_USER_ITEMS,
   MAKE_OFFER,
-  FETCH_RECEIVED_OFFERS
+  FETCH_RECEIVED_OFFERS,
+  ACCEPT_OFFER
 } from './types';
 
 export const fetchUser = () => async dispatch => {
@@ -68,9 +69,15 @@ export const fetchReceivedOffers = () => async dispatch => {
 };
 
 export const makeOffer = offer => async dispatch => {
-  console.log('action creator called');
+  //console.log('action creator called');
   console.log(offer);
   const res = await axios.post('/api/make_offer', offer);
   //console.log(res);
   dispatch({ type: MAKE_OFFER, payload: res.data });
+};
+
+export const acceptOffer = offer => async dispatch => {
+  //console.log(offer);
+  const res = await axios.post('/api/accept_offer', offer);
+  dispatch({ type: ACCEPT_OFFER, payload: res.data });
 };

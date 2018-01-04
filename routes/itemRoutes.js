@@ -76,13 +76,20 @@ module.exports = app => {
     let offerList = [];
     for (let off in offers) {
       //console.log(offers[off]._id);
-      const itemOffered = await Item.findOne({ _id: offers[off]._itemOffered });
-      const itemWanted = await Item.findOne({ _id: offers[off]._itemWanted });
+      const offerID = offers[off]._id;
+      const itemOfferedID = offers[off]._itemOffered;
+      const itemWantedID = offers[off]._itemWanted;
+      const itemOffered = await Item.findOne({ _id: itemOfferedID });
+      const itemWanted = await Item.findOne({ _id: itemWantedID });
 
-      const tradeOffer = { itemOffered, itemWanted };
+      const tradeOffer = {
+        offerID,
+        itemOffered,
+        itemWanted
+      };
       offerList.push(tradeOffer);
     }
-    console.log(offerList);
+    //console.log(offerList);
 
     res.send(offerList);
   });
@@ -100,6 +107,7 @@ module.exports = app => {
 
   app.post('/api/make_offer', requireLogin, async (req, res) => {
     const { _offerTo, _offerFrom, _itemOffered, _itemWanted } = req.body;
+    console.log(req.body);
 
     const offerRecord = new Offer({
       _offerTo: _offerTo,
@@ -116,9 +124,35 @@ module.exports = app => {
     res.send(updatedItem);
   });
 
-  app.post('api/accept_offer', requireLogin, async (req, res) => {
-    const { acceptance } = req.body;
+  app.post('/api/accept_offer', requireLogin, async (req, res) => {
+    //console.log(req.body);
+    //update offer in item record to accepted:yes
+    const { itemWanted, itemOffered, offerID } = req.body;
 
+    const offerRecord = await Offer.findOne({ _id: offerID });
+    offerRecord.accepted = true;
+    offerRecord.dateCreated = Date.now();
+    const updatedOffer = await offerRecord.save();
+
+    const itemWantedRecord = await Item.findOne({ _id: itemWanted });
+    itemWantedRecord.traded = true;
+    itemWantedRecord._tradedTo = offerRecord._offerFrom;
+    itemWantedRecord._tradedFor = offerRecord._itemOffered;
+    const updatedItemWanted = await itemWantedRecord.save();
+
+    const itemOfferedRecord = await Item.findOne({ _id: itemOffered });
+    itemOfferedRecord.traded = true;
+    itemOfferedRecord._tradedTo = offerRecord._offerTo;
+    itemOfferedRecord._tradedFor = offerRecord._itemWanted;
+    const updatedItemOffered = await itemOfferedRecord.save();
+
+    res.send(updatedItemOffered);
+    /*
+
+
+    */
+
+    /*
     const offer = await Offer.find({ _id: acceptance.offer.id }); //check this
     offer.accepted = false;
     offer.dateAccepted = Date.now();
@@ -137,5 +171,6 @@ module.exports = app => {
     itemOffered.save();
 
     res.send(offer);
+    */
   });
 };

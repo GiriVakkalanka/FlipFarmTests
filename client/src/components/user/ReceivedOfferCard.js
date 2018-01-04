@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Panel, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 //import * as actions from '../../actions';
 
 class ReceivedOfferCard extends Component {
@@ -11,16 +11,14 @@ class ReceivedOfferCard extends Component {
         <p>{this.props._itemOffered}</p>
         <p>{this.props._offerFrom}</p>
         <p>
-          <Link to={`/`}>
-            <Button
-              onClick={() => {
-                console.log('button');
-              }}
-              bsStyle="primary"
-            >
-              Accept Offer
-            </Button>
-          </Link>
+          <Button
+            onClick={() => {
+              this.props.handleAccept();
+            }}
+            bsStyle="primary"
+          >
+            Accept Offer
+          </Button>
         </p>
       </Panel>
     );
