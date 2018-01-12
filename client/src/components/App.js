@@ -9,6 +9,7 @@ import Dashboard from './Dashboard';
 import ItemNew from './items/ItemNew';
 import ItemPage from './items/ItemPage';
 import UserPage from './user/UserPage';
+import AddressForm from './user/AddressForm';
 
 class App extends Component {
   componentDidMount() {
@@ -25,6 +26,7 @@ class App extends Component {
             <Route path="/items/new" component={ItemNew} />
             <Route path="/offer/:itemID" component={ItemPage} />
             <Route path="/user" component={UserPage} />
+            <Route path="/address" component={AddressForm} />
           </div>
         </BrowserRouter>
       </div>
