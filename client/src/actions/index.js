@@ -81,3 +81,9 @@ export const acceptOffer = offer => async dispatch => {
   const res = await axios.post('/api/accept_offer', offer);
   dispatch({ type: ACCEPT_OFFER, payload: res.data });
 };
+
+export const submitAddress = ( values, history ) => async dispatch => {
+  const res = await axios.post('/api/submit_address', values);
+  history.push('/');
+  dispatch({ type: FETCH_USER, payload: res.data });
+};
