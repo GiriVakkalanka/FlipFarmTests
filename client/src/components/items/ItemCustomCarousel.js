@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import ItemCard from './ItemCard';
+//import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import * as actions from '../../actions';
 
 class ItemCustomCarousel extends Component {
@@ -43,6 +44,7 @@ class ItemCustomCarousel extends Component {
     const carouselItems = this.props.items.map(item => {
       return (
         <ItemCard
+          key={item._id}
           _id={item._id}
           src={item.picture}
           name={item.name}
@@ -61,7 +63,6 @@ class ItemCustomCarousel extends Component {
     return (
       <div>
         {this.renderItems()}
-
         <Button
           onClick={() => {
             this.handlePrev();

@@ -11,10 +11,12 @@
     }
   },
   "dependencies": {
+    "animate.css": "^3.5.2",
     "axios": "^0.16.2",
     "cloudinary-react": "^1.0.4",
     "materialize-css": "^0.100.1",
     "react": "^15.6.1",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-bootstrap": "^0.31.5",
     "react-dom": "^15.6.1",
     "react-dropzone": "^4.2.1",
