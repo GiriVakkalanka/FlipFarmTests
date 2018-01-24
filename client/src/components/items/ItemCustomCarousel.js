@@ -9,8 +9,8 @@ class ItemCustomCarousel extends Component {
   constructor(...args) {
     super(...args);
 
-    this.handleSelect = this.handleNext.bind(this);
-    this.handleSelect = this.handleNext.bind(this);
+    this.handleNext = this.handleNext.bind(this);
+    this.handlePrev = this.handlePrev.bind(this);
 
     this.state = {
       index: 0

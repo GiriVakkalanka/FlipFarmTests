@@ -6,3 +6,4 @@ export const LOAD_ITEM = 'load_item';
 export const MAKE_OFFER = 'make_offer';
 export const ACCEPT_OFFER = 'accept_offer';
 export const FETCH_RECEIVED_OFFERS = 'fetch_received_offers';
+export const FETCH_SENT_OFFERS = 'fetch_sent_offers';

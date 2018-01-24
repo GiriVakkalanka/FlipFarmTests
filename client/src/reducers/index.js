@@ -8,6 +8,7 @@ import loadedItemReducer from './loadedItemReducer';
 import offersMadeReducer from './offersMadeReducer';
 import offersReceivedReducer from './offersReceivedReducer';
 import offersAcceptedReducer from './offersAcceptedReducer';
+import offersSentReducer from './offersSentReducer';
 
 export default combineReducers({
   auth: authReducer,
@@ -18,5 +19,6 @@ export default combineReducers({
   loadedItem: loadedItemReducer,
   offersMade: offersMadeReducer,
   offersReceived: offersReceivedReducer,
-  offersAccepted: offersAcceptedReducer
+  offersAccepted: offersAcceptedReducer,
+  offersSent: offersSentReducer
 });
