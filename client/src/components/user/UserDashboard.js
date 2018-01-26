@@ -37,7 +37,7 @@ class UserDashboard extends Component {
       		</p>
       	</Jumbotron>
 
-        <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
+        <Tabs defaultActiveKey={this.state.navKey} id="uncontrolled-tab-example">
         	<Tab eventKey={1} title="Tab 1">
         		Tab 1 content
         	</Tab>

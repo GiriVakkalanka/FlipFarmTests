@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 //import ItemList from './items/ItemList';
-//import ItemGallery from './items/ItemGallery';
-import ItemCustomCarousel from './items/ItemCustomCarousel';
+import ItemGallery from './items/ItemGallery';
+//import ItemCustomCarousel from './items/ItemCustomCarousel';
 
 const Dashboard = () => {
   return (
     <div>
-      <ItemCustomCarousel />
+      <ItemGallery />
       <div className="fixed-action-btn">
         <Link to="/items/new" className="btn-floating btn-large red">
           <i className="material-icons">add</i>

@@ -12,7 +12,8 @@ module.exports = async (req, res, next) => {
   req.body.photo = `${uuid.v4()}.${extension}`;
 
   const photo = await jimp.read(req.file.buffer);
-  await photo.resize(800, jimp.AUTO);
+  //await photo.resize(800, jimp.AUTO);
+  await photo.resize(800, 800);
   await photo.write(`./public/uploads/${req.body.photo}`);
   next();
   //req.body

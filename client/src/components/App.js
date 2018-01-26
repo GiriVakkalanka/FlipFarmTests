@@ -3,7 +3,8 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import Landing from './Landing';
-import Header from './Header';
+//import Header from './Header';
+import BootstrapHeader from './BootstrapHeader';
 import Dashboard from './Dashboard';
 //import SurveyNew from './surveys/SurveyNew';
 import ItemNew from './items/ItemNew';
@@ -21,7 +22,7 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <div>
-            <Header />
+            <BootstrapHeader />
             <div className="container">
               <Route exact path="/" component={Landing} />
               <Route exact path="/items" component={Dashboard} />
